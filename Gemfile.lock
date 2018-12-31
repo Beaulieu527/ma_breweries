@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ma_breweries (0.1.0)
+    ma_breweries (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -18,11 +18,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.17)
+  bundler
   gem-release
   ma_breweries!
   pry
-  rake (~> 10.4)
+  rake
 
 BUNDLED WITH
    1.17.2
