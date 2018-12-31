@@ -1,8 +1,15 @@
+require 'pry'
+require 'open-uri'
+require 'json'
+
 class MaBreweries::API
 
-  def self.get_massachusetts_breweries
+  def initialize
     page = open("https://api.openbrewerydb.org/breweries?by_state=Massachusetts&per_page=50&page=1")
-    data = JSON.parse(page.read)
+    breweries = JSON.parse(page.read)
+    breweries.each do |attributes_hash|
+     MaBreweries::BREWERY.new(attributes_hash)
+    end
   end
-  
+
 end
