@@ -41,5 +41,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency "gem-release"
   spec.add_dependency "open-uri"
-  spec.add_dependency "JSON"
+  
 end
