@@ -16,18 +16,26 @@ class MaBreweries::BREWERY
     @@all
   end
 
-  def self.search_by_name(name)
+  def self.find_by_name(name)
     self.all.detect {|brewery| brewery.name == name}
   end
 
-  def self.serch_by_brewery_type(brewery_type)
+  def self.find_by_brewery_type(brewery_type)
+    self.all.select {|brewery| brewery.brewery_type == brewery_type}
   end
 
-  def self.search_by_street(street)
+  def self.find_by_street(street)
+    self.all.select {|brewery| brewery.street == street}
   end
 
-  def self.search_by_city(city)
+  def self.find_by_city(city)
+    self.all.select {|brewery| brewery.city == city}
   end
 
-
+  def brew_info
+    puts "Brewery Name: #{self.name}"
+    puts "Adress: #{self.street} #{self.city} #{self.state}, #{self.postal_code} #{self.country}"
+    puts "Phone Number: #{self.phone}"
+    puts "Website: #{self.website_url}"
+  end
 end
