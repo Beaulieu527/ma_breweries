@@ -11,9 +11,23 @@ class MaBreweries::BREWERY
     end
    @@all << self
   end
-binding.pry
+
   def self.all
     @@all
   end
+
+  def self.search_by_name(name)
+    self.all.detect {|brewery| brewery.name == name}
+  end
+
+  def self.serch_by_brewery_type(brewery_type)
+  end
+
+  def self.search_by_street(street)
+  end
+
+  def self.search_by_city(city)
+  end
+
 
 end
