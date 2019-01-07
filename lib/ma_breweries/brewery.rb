@@ -6,14 +6,32 @@ class MaBreweries::BREWERY
   def initialize(attributes)
     attributes.each do |key, value|
       if self.respond_to?(key)
-        self.send(("#{key}="), value)
+      self.send(("#{key}="), value)
       end
     end
-   @@all << self
+    @@all << self
   end
 
   def self.all
-    @@all
+    if self.all.empty?
+      new_from_api
+    else
+      @@all
+    end
+  end
+
+  def new_from_api
+    api = MaBreweries::API.new
+    results = breweries.each do |attributes_hash|
+     self.new(attributes_hash)
+     @@all << self
+    end
+    # end
+
+  def self.all_names
+    self.all.each_with_index do |brewery, i|
+    puts "#{i+1}: #{brewery.name}"
+    end
   end
 
   def self.find_by_name(name)
@@ -21,7 +39,7 @@ class MaBreweries::BREWERY
   end
 
   def self.find_by_brewery_type(brewery_type)
-    self.all.select {|brewery| brewery.brewery_type == brewery_type}
+    self.all.collect {|brewery| brewery.brewery_type.downcase == brewery_type.downcase}
   end
 
   def self.find_by_street(street)
@@ -32,10 +50,4 @@ class MaBreweries::BREWERY
     self.all.select {|brewery| brewery.city == city}
   end
 
-  def brew_info
-    puts "Brewery Name: #{self.name}"
-    puts "Adress: #{self.street} #{self.city} #{self.state}, #{self.postal_code} #{self.country}"
-    puts "Phone Number: #{self.phone}"
-    puts "Website: #{self.website_url}"
-  end
 end
