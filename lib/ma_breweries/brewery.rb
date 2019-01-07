@@ -47,4 +47,18 @@ class MaBreweries::BREWERY
     self.all.select {|brewery| brewery.city == city}
   end
 
+  def self.all_names
+    self.all.each_with_index do |brewery, i|
+    puts "#{i+1}: #{brewery.name}"
+    end
+  end
+
+  def brew_info
+    puts "Brewery Name: #{self.name}"
+    puts "Brewery Type: #{self.brewery_type}"
+    puts "Adress: #{self.street} #{self.city} #{self.state}, #{self.postal_code} #{self.country}"
+    puts "Phone Number: #{self.phone}"
+    puts "Website: #{self.website_url}"
+  end
+
 end

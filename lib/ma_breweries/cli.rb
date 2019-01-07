@@ -16,24 +16,24 @@ class MaBreweries::CLI
     puts "Welcome to your one stop search or all of your local breweries"
     puts "Do you want to know where the brews are?"
     puts "I can help you search but you will have to share!"
-      menu
-    brew_input = gets.chomp
-    while (brew_input != "exit")
-      if brew_input == "name"
+    menu
+    brewery_input = gets.chomp.downcase
+    while (brewery_input != "exit")
+      if brewery_input == "name"
         search_breweries_by_name
-      elsif brew_input == "type"
+      elsif brewery_input == "type"
         search_breweries_by_type
-      elsif brew_input == "street"
+      elsif brewery_input == "street"
         search_breweries_by_street
-      elsif brew_input == "city"
+      elsif brewery_input == "city"
         search_breweries_by_city
-      elsif brew_input == "let the beer flow"
+      elsif brewery_input == "let the beer flow"
         show_all_breweries
       else
         puts "I am sorry you won't find any brews that way!"
       end
       menu
-      brew_input = gets.chomp
+      brewery_input = gets.chomp.downcase
     end
     puts "Peace out! Have fun and drive carefully!"
   end
@@ -60,9 +60,12 @@ class MaBreweries::CLI
    def search_breweries_by_type
      puts "Please enter the brewery type: "
      input = gets.chomp
-     brewery = MaBreweries::BREWERY.find_by_brewery_type(input)
-     if brewery
-       brewery.brew_info
+     breweries = MaBreweries::BREWERY.find_by_brewery_type(input)
+     if breweries
+       breweries.each do |brewery|
+         brewery.brew_info
+         puts "\n"
+       end
      end
    end
 
@@ -86,14 +89,6 @@ class MaBreweries::CLI
 
    def show_all_breweries
      MaBreweries::BREWERY.all_names
-   end
-
-   def brew_info
-     puts "Brewery Name: #{brewery.name}"
-     puts "Brewery Type: #{brewery.brewery_type}"
-     puts "Adress: #{brewery.street} #{brewery.city} #{brewery.state}, #{brewery.postal_code} #{brewery.country}"
-     puts "Phone Number: #{brewery.phone}"
-     puts "Website: #{brewery.website_url}"
    end
 
 end
