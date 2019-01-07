@@ -13,20 +13,17 @@ class MaBreweries::BREWERY
   end
 
   def self.all
-    if self.all.empty?
-      new_from_api
-    else
       @@all
-    end
   end
 
-  def new_from_api
-    api = MaBreweries::API.new
-    results = breweries.each do |attributes_hash|
-     self.new(attributes_hash)
-     @@all << self
-    end
-    # end
+
+  # def self.create_from_api
+  #   api = MaBreweries::API.new
+  #   results = breweries.collect do |attributes_hash|
+  #    self.new(attributes_hash)
+  #   end
+  #   @all << self
+  #  end
 
   def self.all_names
     self.all.each_with_index do |brewery, i|
@@ -39,7 +36,7 @@ class MaBreweries::BREWERY
   end
 
   def self.find_by_brewery_type(brewery_type)
-    self.all.collect {|brewery| brewery.brewery_type.downcase == brewery_type.downcase}
+    self.all.select {|brewery| brewery.brewery_type == brewery_type}
   end
 
   def self.find_by_street(street)
