@@ -33,6 +33,7 @@ class MaBreweries::BREWERY
 
   def self.find_by_name(name)
     self.all.detect {|brewery| brewery.name == name}
+
   end
 
   def self.find_by_brewery_type(brewery_type)

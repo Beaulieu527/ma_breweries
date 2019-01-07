@@ -4,11 +4,20 @@ require 'json'
 
 class MaBreweries::CLI
 
-  def initialize()
-    page = open("https://api.openbrewerydb.org/breweries?by_state=Massachusetts&per_page=50&page=1")
-    breweries = JSON.parse(page.read)
-     breweries.each do |attributes_hash|
-      MaBreweries::BREWERY.new(attributes_hash)
+  def initialize
+    boolean = true
+    i = 1
+    while boolean do
+      page = open("https://api.openbrewerydb.org/breweries?by_state=Massachusetts&per_page=50&page=#{i}")
+      i+=1
+      breweries = JSON.parse(page.read)
+      if breweries.count == 0
+        boolean = false
+      else
+        breweries.each do |attributes_hash|
+          MaBreweries::BREWERY.new(attributes_hash)
+        end
+      end
     end
   end
 
@@ -16,6 +25,7 @@ class MaBreweries::CLI
     puts "Welcome to your one stop search or all of your local breweries"
     puts "Do you want to know where the brews are?"
     puts "I can help you search but you will have to share!"
+    show_all_breweries
     menu
     brewery_input = gets.chomp.downcase
     while (brewery_input != "exit")
@@ -27,8 +37,8 @@ class MaBreweries::CLI
         search_breweries_by_street
       elsif brewery_input == "city"
         search_breweries_by_city
-      elsif brewery_input == "let the beer flow"
-        show_all_breweries
+      elsif brewery_input == "all"
+        show_all_breweries.sort
       else
         puts "I am sorry you won't find any brews that way!"
       end
@@ -44,7 +54,7 @@ class MaBreweries::CLI
      puts "To search by brewery type please enter - Type"
      puts "To search by street name please enter - Street"
      puts "To search by city please enter - City"
-     puts "To list all the breweries by name please enter - Let the beer flow"
+     puts "To list all the breweries by name please enter - all"
      puts "To exit please enter - exit"
    end
 
@@ -72,18 +82,25 @@ class MaBreweries::CLI
    def search_breweries_by_street
      puts "Pease enter the street you think the brews are on:"
      input = gets.chomp
-     brewery = MaBreweries::BREWERY.find_by_street(input)
-     if brewery
-       brewery.brew_info
+     breweries = MaBreweries::BREWERY.find_by_street(input)
+     if breweries
+       breweries.each do |brewery|
+         brewery.brew_info
+         puts "\n"
+       end
      end
    end
+
 
    def search_breweries_by_city
      puts "Please enter the city you would like to search in:"
      input = gets.chomp
-     brewery = MaBreweries::BREWERY.find_by_city(input)
-     if brewery
-       brewery.brew_info
+     breweries = MaBreweries::BREWERY.find_by_city(input)
+     if breweries
+       breweries.each do |brewery|
+         brewery.brew_info
+         puts "\n"
+       end
      end
    end
 
