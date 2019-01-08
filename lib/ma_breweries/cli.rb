@@ -22,10 +22,13 @@ class MaBreweries::CLI
   end
 
   def call
-    puts "Welcome to your one stop search or all of your local breweries"
-    puts "Do you want to know where the brews are?"
-    puts "I can help you search but you will have to share!"
-    show_all_breweries
+    puts " ** Welcome to your one stop search or all of your local breweries. **"
+    puts "\n"
+    puts " ** Do you want to know where the brews are? **"
+    puts "\n"
+    puts " ** I can help you search but you will have to share! **"
+    puts "\n"
+
     menu
     brewery_input = gets.chomp.downcase
     while (brewery_input != "exit")
@@ -38,24 +41,26 @@ class MaBreweries::CLI
       elsif brewery_input == "city"
         search_breweries_by_city
       elsif brewery_input == "all"
-        show_all_breweries.sort
+        show_all_breweries
       else
-        puts "I am sorry you won't find any brews that way!"
+        puts " ** I am sorry you won't find any brews that way! ** "
       end
       menu
       brewery_input = gets.chomp.downcase
     end
-    puts "Peace out! Have fun and drive carefully!"
+    puts " ** Peace out! Have fun and drive carefully! ** "
   end
 
    def menu
-     puts "There are many ways fo you to search."
-     puts "To search by brewery name please enter - Name"
-     puts "To search by brewery type please enter - Type"
-     puts "To search by street name please enter - Street"
-     puts "To search by city please enter - City"
-     puts "To list all the breweries by name please enter - all"
-     puts "To exit please enter - exit"
+     puts " * There are many ways fo you to search."
+     puts "\n"
+     puts " * To search by brewery name please enter - Name"
+     puts " * To search by brewery type please enter - Type"
+     puts " * To search by street name please enter - Street"
+     puts " * To search by city please enter - City"
+     puts " * To list all the breweries by name please enter - All"
+     puts "\n"
+     puts " * To exit please enter - exit"
    end
 
    def search_breweries_by_name
