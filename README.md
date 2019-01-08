@@ -1,9 +1,6 @@
 # MaBreweries
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ma_breweries`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
+Brewery search that allows you to find all of the local Massachusetts breweries. You are able to list all of the breweries by name in a numbered list. Also you can search all of the breweries by Name, Brewery type, Street, and City. This CLI project is based on the Open Brewery DB API.
 ## Installation
 
 Add this line to your application's Gemfile:
