@@ -1,6 +1,6 @@
 # MaBreweries
 
-Brewery search that allows you to find all of the local Massachusetts breweries. You are able to list all of the breweries by name in a numbered list. Also you can search all of the breweries by Name, Brewery type, Street, and City. This CLI project is based on the Open Brewery DB API.
+Brewery search that allows you to find all of the local Massachusetts breweries. You are able to list all of the breweries by name in a numbered list. Also you can search all of the breweries by Name, Brewery type, and City. This CLI project is based on the Open Brewery DB API.
 ## Installation
 
 Add this line to your application's Gemfile:

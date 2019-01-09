@@ -31,9 +31,9 @@ class MaBreweries::BREWERY
     self.all.select {|brewery| brewery.brewery_type.downcase == brewery_type.downcase}
   end
 
-  def self.find_by_street(street)
-    self.all.select {|brewery| brewery.street.downcase == street.downcase}
-  end
+  # def self.find_by_street(street)
+  #   self.all.select {|brewery| brewery.street.downcase == street.downcase}
+  # end
 
   def self.find_by_city(city)
     self.all.select {|brewery| brewery.city.downcase == city.downcase}
