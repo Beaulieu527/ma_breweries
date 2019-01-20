@@ -2,7 +2,7 @@ class MaBreweries::BREWERY
 
   attr_accessor :name, :brewery_type, :street, :city, :state, :postal_code, :country, :phone, :website_url
   @@all = []
-
+  @@sorted = nil
   def initialize(attributes)
     attributes.each do |key, value|
       if self.respond_to?(key)
@@ -40,9 +40,18 @@ class MaBreweries::BREWERY
   end
 
   def self.all_names
-    self.all.each_with_index do |brewery, i|
+    self.all_sorted.each_with_index do |brewery, i|
     puts "#{i+1}: #{brewery.name}"
     end
+  end
+
+  def self.all_sorted
+     @@sorted ||= self.all.sort!{ |a,b| a.name <=> b.name }
+    # if @@sorted
+    #   @@sorted
+    # else
+    #   @@sorted = self.all.sort!{ |a,b| a.name <=> b.name }
+    # end
   end
 
   def brew_info

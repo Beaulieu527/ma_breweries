@@ -5,20 +5,7 @@ require 'json'
 class MaBreweries::CLI
 
   def initialize
-    boolean = true
-    i = 1
-    while boolean do
-      page = open("https://api.openbrewerydb.org/breweries?by_state=Massachusetts&per_page=50&page=#{i}")
-      i+=1
-      breweries = JSON.parse(page.read)
-      if breweries.count == 0
-        boolean = false
-      else
-        breweries.each do |attributes_hash|
-          MaBreweries::BREWERY.new(attributes_hash)
-        end
-      end
-    end
+    MaBreweries::BreweriesAPI.get_breweries
   end
 
   def call
@@ -55,7 +42,7 @@ class MaBreweries::CLI
   end
 
    def menu
-     puts " * There are many ways fo you to search."
+     puts " * There are many ways for you to search."
      puts "\n"
      puts " * To search by brewery name please enter - Name"
      puts " * To search by brewery type please enter - Type"
