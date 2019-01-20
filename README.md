@@ -7,7 +7,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'ma_breweries'
-```
+``` 
 
 And then execute:
 
