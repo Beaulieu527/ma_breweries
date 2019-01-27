@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["'beaulieudev@gmail.com'"]
 
   spec.summary       = %q{Cli for displaying all local breweries in Mass.}
-  spec.description   = %q{more to come}
+  spec.description   = %q{Brewery search that allows you to find all of the local Massachusetts breweries. You are able to list all of the breweries by name in a numbered list. Also you can search all of the breweries by Name, Brewery type, and City. This CLI project is based on the Open Brewery DB API.}
   spec.homepage      = "https://github.com/Beaulieu527/ma_breweries"
   spec.license       = "MIT"
 
